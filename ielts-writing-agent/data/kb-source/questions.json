@@ -1,0 +1,102 @@
+[
+  {
+    "id": "q_technology_01",
+    "source": "ielts-liz",
+    "topic": "technology",
+    "taskType": "task2",
+    "prompt": "Some people think that modern technology is making people more sociable, while others think it is making people less sociable. Discuss both views and give your own opinion.",
+    "sampleBand": 7.0,
+    "difficultyTag": "medium",
+    "tags": ["technology", "social", "discuss both views"]
+  },
+  {
+    "id": "q_education_01",
+    "source": "ielts-simon",
+    "topic": "education",
+    "taskType": "task2",
+    "prompt": "Some people believe that unpaid community service should be a compulsory part of high school programmes. To what extent do you agree or disagree?",
+    "sampleBand": 7.5,
+    "difficultyTag": "medium",
+    "tags": ["education", "community service", "agree disagree"]
+  },
+  {
+    "id": "q_environment_01",
+    "source": "ielts-liz",
+    "topic": "environment",
+    "taskType": "task2",
+    "prompt": "Many people believe that global environmental problems should be dealt with internationally rather than by each country. To what extent do you agree or disagree?",
+    "sampleBand": 7.0,
+    "difficultyTag": "medium",
+    "tags": ["environment", "international", "agree disagree"]
+  },
+  {
+    "id": "q_health_01",
+    "source": "ielts-simon",
+    "topic": "health",
+    "taskType": "task2",
+    "prompt": "Some people say that the best way to improve public health is to increase the number of sports facilities. Others, however, say that this would have little effect on public health and that other measures are required. Discuss both views and give your own opinion.",
+    "sampleBand": 7.0,
+    "difficultyTag": "medium",
+    "tags": ["health", "sports", "discuss both views"]
+  },
+  {
+    "id": "q_work_01",
+    "source": "ielts-liz",
+    "topic": "work",
+    "taskType": "task2",
+    "prompt": "Some employers offer their employees subsidised membership of gyms and sports clubs, believing that this will make their staff healthier and more productive. Other employers see this as an unnecessary expense. Discuss both views and give your own opinion.",
+    "sampleBand": 7.0,
+    "difficultyTag": "easy",
+    "tags": ["work", "health", "discuss both views"]
+  },
+  {
+    "id": "q_society_01",
+    "source": "manual",
+    "topic": "society",
+    "taskType": "task2",
+    "prompt": "The increasing gap between rich and poor countries is now one of the biggest threats to world peace. How true do you think this statement is? What could be done to reduce this gap?",
+    "sampleBand": 7.5,
+    "difficultyTag": "hard",
+    "tags": ["society", "poverty", "inequality", "two part question"]
+  },
+  {
+    "id": "q_crime_01",
+    "source": "ielts-simon",
+    "topic": "crime",
+    "taskType": "task2",
+    "prompt": "Some people think that the best way to reduce crime is to give longer prison sentences. Others, however, believe there are better alternative ways of reducing crime. Discuss both views and give your opinion.",
+    "sampleBand": 7.0,
+    "difficultyTag": "medium",
+    "tags": ["crime", "prison", "discuss both views"]
+  },
+  {
+    "id": "q_media_01",
+    "source": "ielts-liz",
+    "topic": "media",
+    "taskType": "task2",
+    "prompt": "Nowadays, the media influence people more than ever before. What are the advantages and disadvantages of this development?",
+    "sampleBand": 6.5,
+    "difficultyTag": "easy",
+    "tags": ["media", "advantages disadvantages"]
+  },
+  {
+    "id": "q_urbanisation_01",
+    "source": "ielts-simon",
+    "topic": "urbanisation",
+    "taskType": "task2",
+    "prompt": "In many cities, the government is spending a large amount of money on improving the infrastructure of the city. Some people think the money should be spent on improving public services instead. To what extent do you agree or disagree?",
+    "sampleBand": 7.0,
+    "difficultyTag": "medium",
+    "tags": ["urbanisation", "infrastructure", "agree disagree"]
+  },
+  {
+    "id": "q_globalisation_01",
+    "source": "manual",
+    "topic": "globalisation",
+    "taskType": "task2",
+    "prompt": "International tourism has become one of the biggest industries in the world. Do the benefits of international tourism outweigh its disadvantages?",
+    "sampleBand": 7.0,
+    "difficultyTag": "easy",
+    "tags": ["globalisation", "tourism", "advantages disadvantages"]
+  }
+]

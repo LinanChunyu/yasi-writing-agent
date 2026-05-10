@@ -1,0 +1,181 @@
+
+> ielts-writing-agent@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.19.0.0:3000
+- Environments: .env.local
+✓ Ready in 270ms
+
+ GET /write/eJFSwf6F4Z3s6JQcn-psb 200 in 818ms (next.js: 611ms, application-code: 206ms)
+ GET / 200 in 65ms (next.js: 17ms, application-code: 48ms)
+ GET /api/essays/eJFSwf6F4Z3s6JQcn-psb 200 in 639ms (next.js: 613ms, application-code: 26ms)
+ GET /api/derived-views/scoreTrend 200 in 548ms (next.js: 539ms, application-code: 9ms)
+ GET /api/derived-views/dailyTip 200 in 547ms (next.js: 538ms, application-code: 9ms)
+ GET /api/derived-views/recentEssays 200 in 547ms (next.js: 538ms, application-code: 9ms)
+ GET /api/health 200 in 1295ms (next.js: 213ms, application-code: 1082ms)
+ GET / 200 in 61ms (next.js: 3ms, application-code: 58ms)
+ GET /api/derived-views/scoreTrend 200 in 23ms (next.js: 17ms, application-code: 6ms)
+ GET /api/derived-views/dailyTip 200 in 28ms (next.js: 23ms, application-code: 4ms)
+ GET /api/derived-views/recentEssays 200 in 33ms (next.js: 29ms, application-code: 4ms)
+ GET /question-bank 200 in 46ms (next.js: 24ms, application-code: 23ms)
+ GET /api/questions? 200 in 31ms (next.js: 26ms, application-code: 6ms)
+ GET /write/assist/q_technology_01 200 in 987ms (next.js: 910ms, application-code: 77ms)
+ GET /write/assist/q_technology_01 200 in 50ms (next.js: 16ms, application-code: 34ms)
+ POST /api/essays 201 in 46ms (next.js: 33ms, application-code: 13ms)
+ GET /api/questions/q_technology_01 200 in 665ms (next.js: 658ms, application-code: 7ms)
+ GET /api/questions/q_technology_01 200 in 20ms (next.js: 15ms, application-code: 4ms)
+[env check] ANTHROPIC_API_KEY present: true
+[env check] ANTHROPIC_API_KEY prefix: sk-your-de
+[env check] ANTHROPIC_BASE_URL: https://api.deepseek.com/anthropic
+[env check] GRADING_MODEL: deepseek-v4-pro
+[env check] COACH_MODEL: deepseek-v4-flash
+[coach] model=deepseek-v4-flash baseURL=https://api.deepseek.com/anthropic keyPrefix=sk-your-de threadId=WhbQiWidWiRNqI1XnGu3t
+ POST /api/coach/message 200 in 706ms (next.js: 49ms, application-code: 658ms)
+[22:29:58] [31mERROR[39m: [36mCoach stream error[39m
+    err: {
+      "type": "AuthenticationError",
+      "message": "401 {\"error\":{\"message\":\"Authentication Fails, Your api key: ****here is invalid\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}",
+      "stack":
+          Error: 401 {"error":{"message":"Authentication Fails, Your api key: ****here is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+              at APIError.generate (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:153:20)
+              at Anthropic.makeStatusError (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:9618:185)
+              at Anthropic.makeRequest (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:9799:30)
+              at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      "status": 401,
+      "headers": {},
+      "requestID": null,
+      "error": {
+        "error": {
+          "message": "Authentication Fails, Your api key: ****here is invalid",
+          "type": "authentication_error",
+          "param": null,
+          "code": "invalid_request_error"
+        }
+      }
+    }
+ GET / 200 in 22ms (next.js: 3ms, application-code: 19ms)
+ GET /api/derived-views/dailyTip 200 in 20ms (next.js: 15ms, application-code: 6ms)
+ GET /api/derived-views/recentEssays 200 in 24ms (next.js: 21ms, application-code: 3ms)
+ GET /api/derived-views/scoreTrend 200 in 29ms (next.js: 26ms, application-code: 4ms)
+ GET /question-bank 200 in 20ms (next.js: 2ms, application-code: 18ms)
+ GET /api/questions? 200 in 6ms (next.js: 1886µs, application-code: 4ms)
+ GET /wordbook 200 in 53ms (next.js: 26ms, application-code: 27ms)
+ GET /api/wordbook?limit=100 200 in 35ms (next.js: 30ms, application-code: 5ms)
+ GET /write/new 200 in 46ms (next.js: 22ms, application-code: 23ms)
+ POST /api/essays 201 in 8ms (next.js: 3ms, application-code: 5ms)
+ POST /api/essays 201 in 13ms (next.js: 9ms, application-code: 4ms)
+ GET /write/t4aMFxlU3-hCu2o7Tt86l 200 in 59ms (next.js: 11ms, application-code: 48ms)
+ GET /write/pJy_Ma8-S8FWX2XfpzAlb 200 in 27ms (next.js: 4ms, application-code: 24ms)
+ GET /api/essays/pJy_Ma8-S8FWX2XfpzAlb 200 in 14ms (next.js: 10ms, application-code: 5ms)
+ GET /wordbook 200 in 18ms (next.js: 2ms, application-code: 16ms)
+ GET /write/new 200 in 20ms (next.js: 2ms, application-code: 18ms)
+ POST /api/essays 201 in 7ms (next.js: 3ms, application-code: 4ms)
+ POST /api/essays 201 in 12ms (next.js: 8ms, application-code: 4ms)
+ GET /write/4R06mEJghcvd2zuz65NWQ 200 in 52ms (next.js: 9ms, application-code: 43ms)
+ GET /write/nkk5zmvu7IjvTVmgeolOb 200 in 24ms (next.js: 3ms, application-code: 21ms)
+ GET /api/essays/nkk5zmvu7IjvTVmgeolOb 200 in 14ms (next.js: 9ms, application-code: 5ms)
+ GET /question-bank 200 in 16ms (next.js: 2ms, application-code: 14ms)
+ GET /write/new 200 in 20ms (next.js: 2ms, application-code: 18ms)
+ POST /api/essays 201 in 6ms (next.js: 2ms, application-code: 4ms)
+ POST /api/essays 201 in 12ms (next.js: 8ms, application-code: 4ms)
+ GET /write/eg-5usGc9vYcx_GZCuEJ1 200 in 52ms (next.js: 9ms, application-code: 43ms)
+ GET /write/lpJ01tcYKTJqxJ5lAj8eD 200 in 24ms (next.js: 3ms, application-code: 22ms)
+ GET /api/essays/lpJ01tcYKTJqxJ5lAj8eD 200 in 16ms (next.js: 11ms, application-code: 5ms)
+ GET /write/new 200 in 17ms (next.js: 2ms, application-code: 15ms)
+ POST /api/essays 201 in 6ms (next.js: 1728µs, application-code: 4ms)
+ POST /api/essays 201 in 10ms (next.js: 7ms, application-code: 4ms)
+ GET /write/2KRe4-NHPtTdvtY-YNnpI 200 in 46ms (next.js: 9ms, application-code: 37ms)
+ GET /write/ZWrJ8Ntx0V0KTS1lW0f-_ 200 in 19ms (next.js: 1977µs, application-code: 17ms)
+ GET /api/essays/ZWrJ8Ntx0V0KTS1lW0f-_ 200 in 13ms (next.js: 8ms, application-code: 5ms)
+ GET /question-bank 200 in 22ms (next.js: 3ms, application-code: 20ms)
+ GET / 200 in 17ms (next.js: 2ms, application-code: 15ms)
+ GET /api/derived-views/scoreTrend 200 in 15ms (next.js: 9ms, application-code: 6ms)
+ GET /api/derived-views/dailyTip 200 in 6ms (next.js: 2ms, application-code: 4ms)
+ GET /api/derived-views/recentEssays 200 in 11ms (next.js: 7ms, application-code: 4ms)
+ GET /api/derived-views/scoreTrend 200 in 20ms (next.js: 15ms, application-code: 5ms)
+ GET /api/derived-views/dailyTip 200 in 6ms (next.js: 1783µs, application-code: 5ms)
+ GET /api/derived-views/recentEssays 200 in 12ms (next.js: 8ms, application-code: 4ms)
+ GET /api/derived-views/scoreTrend 200 in 25ms (next.js: 17ms, application-code: 8ms)
+ GET /api/derived-views/recentEssays 200 in 30ms (next.js: 26ms, application-code: 4ms)
+ GET /api/derived-views/dailyTip 200 in 35ms (next.js: 32ms, application-code: 4ms)
+ GET /question-bank 200 in 22ms (next.js: 3ms, application-code: 19ms)
+ GET /api/questions? 200 in 6ms (next.js: 1736µs, application-code: 4ms)
+ GET /write/assist/q_technology_01 200 in 37ms (next.js: 13ms, application-code: 24ms)
+ POST /api/essays 201 in 9ms (next.js: 3ms, application-code: 6ms)
+ GET /api/questions/q_technology_01 200 in 17ms (next.js: 13ms, application-code: 4ms)
+ GET /api/questions/q_technology_01 200 in 5ms (next.js: 1591µs, application-code: 4ms)
+[coach] model=deepseek-v4-flash baseURL=https://api.deepseek.com/anthropic keyPrefix=sk-your-de threadId=efEzMt873wvD3TdgfJEFk
+ POST /api/coach/message 200 in 927ms (next.js: 2ms, application-code: 925ms)
+[22:49:49] [31mERROR[39m: [36mCoach stream error[39m
+    err: {
+      "type": "AuthenticationError",
+      "message": "401 {\"error\":{\"message\":\"Authentication Fails, Your api key: ****here is invalid\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}",
+      "stack":
+          Error: 401 {"error":{"message":"Authentication Fails, Your api key: ****here is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+              at APIError.generate (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:153:20)
+              at Anthropic.makeStatusError (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:9618:185)
+              at Anthropic.makeRequest (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:9799:30)
+              at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      "status": 401,
+      "headers": {},
+      "requestID": null,
+      "error": {
+        "error": {
+          "message": "Authentication Fails, Your api key: ****here is invalid",
+          "type": "authentication_error",
+          "param": null,
+          "code": "invalid_request_error"
+        }
+      }
+    }
+ GET / 200 in 74ms (next.js: 4ms, application-code: 70ms)
+ GET /api/derived-views/scoreTrend 200 in 23ms (next.js: 17ms, application-code: 5ms)
+ GET /api/derived-views/dailyTip 200 in 8ms (next.js: 3ms, application-code: 4ms)
+ GET /api/derived-views/recentEssays 200 in 13ms (next.js: 8ms, application-code: 5ms)
+ GET /api/derived-views/scoreTrend 200 in 19ms (next.js: 15ms, application-code: 4ms)
+ GET /api/derived-views/dailyTip 200 in 23ms (next.js: 19ms, application-code: 3ms)
+ GET /api/derived-views/recentEssays 200 in 27ms (next.js: 24ms, application-code: 3ms)
+ GET /api/essays/eJFSwf6F4Z3s6JQcn-psb 200 in 20ms (next.js: 14ms, application-code: 5ms)
+ GET / 200 in 56ms (next.js: 2ms, application-code: 54ms)
+ GET /api/derived-views/scoreTrend 200 in 19ms (next.js: 14ms, application-code: 5ms)
+ GET /api/derived-views/dailyTip 200 in 24ms (next.js: 21ms, application-code: 4ms)
+ GET /api/derived-views/recentEssays 200 in 31ms (next.js: 26ms, application-code: 5ms)
+ GET /write/new 200 in 25ms (next.js: 3ms, application-code: 22ms)
+ POST /api/essays 201 in 9ms (next.js: 4ms, application-code: 5ms)
+ POST /api/essays 201 in 13ms (next.js: 8ms, application-code: 5ms)
+ GET /write/4IgzQWVPgC7jnC6q7K2LY 200 in 69ms (next.js: 16ms, application-code: 53ms)
+ GET /write/QKSJT6oYxNyCO2VJs1pay 200 in 25ms (next.js: 3ms, application-code: 23ms)
+ GET /api/essays/QKSJT6oYxNyCO2VJs1pay 200 in 19ms (next.js: 15ms, application-code: 4ms)
+ GET /question-bank 200 in 19ms (next.js: 1846µs, application-code: 17ms)
+ GET /api/questions? 200 in 6ms (next.js: 2ms, application-code: 3ms)
+ GET /write/assist/q_technology_01 200 in 35ms (next.js: 13ms, application-code: 21ms)
+ POST /api/essays 201 in 8ms (next.js: 1944µs, application-code: 6ms)
+ GET /api/questions/q_technology_01 200 in 17ms (next.js: 13ms, application-code: 4ms)
+ GET /api/questions/q_technology_01 200 in 6ms (next.js: 1842µs, application-code: 4ms)
+[coach] model=deepseek-v4-flash baseURL=https://api.deepseek.com/anthropic keyPrefix=sk-your-de threadId=FQ0HtJEAOx_nOaOoDRE1S
+ POST /api/coach/message 200 in 2.2s (next.js: 1922µs, application-code: 2.2s)
+[22:53:45] [31mERROR[39m: [36mCoach stream error[39m
+    err: {
+      "type": "AuthenticationError",
+      "message": "401 {\"error\":{\"message\":\"Authentication Fails, Your api key: ****here is invalid\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"invalid_request_error\"}}",
+      "stack":
+          Error: 401 {"error":{"message":"Authentication Fails, Your api key: ****here is invalid","type":"authentication_error","param":null,"code":"invalid_request_error"}}
+              at APIError.generate (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:153:20)
+              at Anthropic.makeStatusError (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:9618:185)
+              at Anthropic.makeRequest (D:\雅思Agent\ielts-writing-agent\.next\dev\server\chunks\node_modules_@anthropic-ai_sdk_0ecvfok._.js:9799:30)
+              at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      "status": 401,
+      "headers": {},
+      "requestID": null,
+      "error": {
+        "error": {
+          "message": "Authentication Fails, Your api key: ****here is invalid",
+          "type": "authentication_error",
+          "param": null,
+          "code": "invalid_request_error"
+        }
+      }
+    }
+[?25h

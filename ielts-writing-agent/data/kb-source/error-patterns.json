@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ep_sva_01",
+    "category": "grammar",
+    "tag": "subject_verb_agreement",
+    "description": "Subject and verb do not agree in number",
+    "exampleBad": "The number of people are increasing.",
+    "exampleGood": "The number of people is increasing.",
+    "fix": "Use singular verb 'is' with 'the number of'; use plural verb with 'a number of'."
+  },
+  {
+    "id": "ep_art_01",
+    "category": "grammar",
+    "tag": "article_misuse",
+    "description": "Incorrect or missing article (a, an, the)",
+    "exampleBad": "Government should take action to protect environment.",
+    "exampleGood": "The government should take action to protect the environment.",
+    "fix": "Use 'the' for specific or previously mentioned nouns; use 'a/an' for first introduction of countable singular nouns."
+  },
+  {
+    "id": "ep_prep_01",
+    "category": "grammar",
+    "tag": "preposition_error",
+    "description": "Wrong preposition used",
+    "exampleBad": "This depends of many factors.",
+    "exampleGood": "This depends on many factors.",
+    "fix": "Memorise common prepositional phrases: depend on, consist of, result in, contribute to."
+  },
+  {
+    "id": "ep_tense_01",
+    "category": "grammar",
+    "tag": "tense_inconsistency",
+    "description": "Unnecessary shift in verb tense within a paragraph",
+    "exampleBad": "Technology advanced rapidly and changes our daily lives.",
+    "exampleGood": "Technology has advanced rapidly and has changed our daily lives.",
+    "fix": "Maintain consistent tense throughout a paragraph unless describing different time periods."
+  },
+  {
+    "id": "ep_coll_01",
+    "category": "vocabulary",
+    "tag": "collocation_error",
+    "description": "Words combined in an unnatural way",
+    "exampleBad": "This problem makes a strong damage to society.",
+    "exampleGood": "This problem causes significant damage to society.",
+    "fix": "Learn common IELTS collocations: cause/inflict damage, make/have an impact, play a role."
+  },
+  {
+    "id": "ep_wordchoice_01",
+    "category": "vocabulary",
+    "tag": "word_choice_error",
+    "description": "Word used in wrong context or with wrong meaning",
+    "exampleBad": "People are very economic about saving money.",
+    "exampleGood": "People are very economical about saving money.",
+    "fix": "Distinguish between similar words: economic (relating to economics) vs economical (saving money)."
+  },
+  {
+    "id": "ep_cohesion_01",
+    "category": "coherence",
+    "tag": "missing_topic_sentence",
+    "description": "Body paragraph lacks a clear topic sentence",
+    "exampleBad": "There are many reasons. People work hard. They also want more money. The companies benefit too.",
+    "exampleGood": "One major reason is economic motivation. Employees work harder when they believe their efforts will be financially rewarded, and companies benefit from increased productivity.",
+    "fix": "Start each body paragraph with a clear topic sentence that directly addresses the question."
+  },
+  {
+    "id": "ep_cohesion_02",
+    "category": "coherence",
+    "tag": "overused_connectives",
+    "description": "Same connective words used repeatedly",
+    "exampleBad": "Furthermore, this is good. Furthermore, people like it. Furthermore, it helps society.",
+    "exampleGood": "Moreover, this approach benefits individuals. In addition, society as a whole stands to gain. Beyond this, the long-term effects could be transformative.",
+    "fix": "Vary connective language: Additionally / Moreover / Furthermore / Beyond this / What is more."
+  },
+  {
+    "id": "ep_task_01",
+    "category": "task",
+    "tag": "unclear_position",
+    "description": "Essay does not clearly state the writer's position",
+    "exampleBad": "There are advantages and disadvantages. Some people agree and some disagree. It is a complex issue.",
+    "exampleGood": "While there are merits to both sides, I firmly believe that the benefits of this policy outweigh its drawbacks.",
+    "fix": "State your position clearly in the introduction and reaffirm it in the conclusion."
+  },
+  {
+    "id": "ep_task_02",
+    "category": "task",
+    "tag": "off_topic_example",
+    "description": "Example given is not relevant to the point being made",
+    "exampleBad": "Technology makes people less social. For example, the iPhone was invented in 2007.",
+    "exampleGood": "Technology can isolate people from face-to-face interaction. For instance, many young people now prefer to communicate via messaging apps rather than meeting in person.",
+    "fix": "Ensure each example directly supports your topic sentence and is relevant to the argument."
+  }
+]

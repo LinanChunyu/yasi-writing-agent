@@ -1,0 +1,24 @@
+
+> ielts-writing-agent@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.19.0.0:3000
+- Environments: .env.local
+✓ Ready in 331ms
+
+ GET /write/assist/q_technology_01 200 in 1040ms (next.js: 708ms, application-code: 331ms)
+ GET /write/aMSSnnt5HmazCAuh5NQzi 200 in 1031ms (next.js: 947ms, application-code: 83ms)
+ POST /api/essays 201 in 48ms (next.js: 23ms, application-code: 25ms)
+ GET /api/essays/aMSSnnt5HmazCAuh5NQzi 200 in 704ms (next.js: 696ms, application-code: 8ms)
+ GET /api/questions/q_technology_01 200 in 587ms (next.js: 583ms, application-code: 4ms)
+ GET /api/questions/q_technology_01 200 in 15ms (next.js: 11ms, application-code: 4ms)
+ GET /api/health 200 in 1015ms (next.js: 31ms, application-code: 984ms)
+ GET / 200 in 51ms (next.js: 25ms, application-code: 26ms)
+ GET /api/derived-views/dailyTip 200 in 601ms (next.js: 585ms, application-code: 15ms)
+ GET /api/derived-views/scoreTrend 200 in 602ms (next.js: 587ms, application-code: 15ms)
+ GET /api/derived-views/recentEssays 200 in 550ms (next.js: 535ms, application-code: 15ms)
+  Reload env: .env.local
+ GET / 200 in 101ms (next.js: 31ms, application-code: 69ms)
+ GET /write/assist/q_technology_01 200 in 42ms (next.js: 14ms, application-code: 28ms)

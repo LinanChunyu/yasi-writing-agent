@@ -1,0 +1,80 @@
+[
+  {
+    "id": "r_ta_9", "criterion": "TA", "band": 9,
+    "descriptor": "The prompt is appropriately addressed and explored in depth. A clear and fully developed position is presented which directly answers the question with no irrelevant detail.",
+    "exampleGood": "The essay fully addresses all parts of the task with a sophisticated, nuanced position supported by relevant, specific examples.",
+    "exampleBad": null
+  },
+  {
+    "id": "r_ta_7", "criterion": "TA", "band": 7,
+    "descriptor": "The main parts of the prompt are appropriately addressed. A clear and developed position is presented. Main ideas are extended and supported but there may be a tendency to over-generalise.",
+    "exampleGood": "The essay covers the key aspects of the question with a clear stance, though some points could benefit from more specific support.",
+    "exampleBad": "Essay touches on the topic but misses one part of the prompt entirely."
+  },
+  {
+    "id": "r_ta_6", "criterion": "TA", "band": 6,
+    "descriptor": "The main parts of the prompt are addressed though some may be more fully covered than others. A relevant position is presented although the conclusions may become unclear or repetitive.",
+    "exampleGood": null,
+    "exampleBad": "The essay addresses the question but gives an unclear or inconsistent opinion throughout."
+  },
+  {
+    "id": "r_ta_5", "criterion": "TA", "band": 5,
+    "descriptor": "The main parts of the prompt are incompletely addressed. The format may be inappropriate. There may be no conclusions drawn.",
+    "exampleGood": null,
+    "exampleBad": "The essay mostly describes the topic without clearly agreeing or disagreeing as required."
+  },
+  {
+    "id": "r_cc_9", "criterion": "CC", "band": 9,
+    "descriptor": "The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal.",
+    "exampleGood": "Paragraphs flow naturally with sophisticated use of cohesive devices; no mechanical repetition.",
+    "exampleBad": null
+  },
+  {
+    "id": "r_cc_7", "criterion": "CC", "band": 7,
+    "descriptor": "Information and ideas are logically organised and there is a clear overall progression. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under-use.",
+    "exampleGood": "Good paragraph structure with topic sentences; cohesive devices mostly used correctly.",
+    "exampleBad": "Overuse of 'Furthermore' and 'In addition' to connect every single idea."
+  },
+  {
+    "id": "r_cc_6", "criterion": "CC", "band": 6,
+    "descriptor": "Information and ideas are generally arranged coherently and there is a clear overall progression. Cohesive devices are used effectively but cohesion within and/or between sentences may be faulty or mechanical.",
+    "exampleGood": null,
+    "exampleBad": "Ideas are in a logical order but paragraphing is inconsistent or sentences within paragraphs don't connect well."
+  },
+  {
+    "id": "r_lr_9", "criterion": "LR", "band": 9,
+    "descriptor": "Full flexibility and precise use are widely evident. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features.",
+    "exampleGood": "Sophisticated vocabulary like 'exacerbate', 'mitigate', 'proliferation' used accurately in context.",
+    "exampleBad": null
+  },
+  {
+    "id": "r_lr_7", "criterion": "LR", "band": 7,
+    "descriptor": "The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident though inappropriacies occur.",
+    "exampleGood": "Good range of vocabulary with mostly accurate use; occasional collocation errors.",
+    "exampleBad": "Using 'make damage' instead of 'cause damage'; 'strong advantage' instead of 'significant advantage'."
+  },
+  {
+    "id": "r_lr_6", "criterion": "LR", "band": 6,
+    "descriptor": "The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather limited range of vocabulary.",
+    "exampleGood": null,
+    "exampleBad": "Heavy reliance on simple words; noticeable repetition of key terms without paraphrase."
+  },
+  {
+    "id": "r_gra_9", "criterion": "GRA", "band": 9,
+    "descriptor": "A wide range of structures is used with full flexibility and control. Punctuation and grammar are used appropriately throughout.",
+    "exampleGood": "Perfect blend of complex and simple sentences; no errors; sophisticated use of conditionals, passives, and relative clauses.",
+    "exampleBad": null
+  },
+  {
+    "id": "r_gra_7", "criterion": "GRA", "band": 7,
+    "descriptor": "A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent.",
+    "exampleGood": "Mostly accurate complex sentences with occasional minor errors that don't obscure meaning.",
+    "exampleBad": "Subject-verb agreement errors in complex sentences; occasional tense inconsistency."
+  },
+  {
+    "id": "r_gra_6", "criterion": "GRA", "band": 6,
+    "descriptor": "A mix of simple and complex sentence forms is used but flexibility is limited. Some errors in grammar and punctuation occur but they rarely reduce communication.",
+    "exampleGood": null,
+    "exampleBad": "Consistent errors with articles (a/an/the); run-on sentences; missing commas after subordinate clauses."
+  }
+]
