@@ -50,95 +50,92 @@ export async function saveGradingResult(
   const gradingId = nanoid();
   const output = result.output;
 
-  // Insert grading result
-  await db.insert(gradingResults).values({
-    id: gradingId,
-    essayId,
-    overallBand: output.overallBand,
-    taBand: output.taBand,
-    ccBand: output.ccBand,
-    lrBand: output.lrBand,
-    graBand: output.graBand,
-    taComment: output.taComment,
-    ccComment: output.ccComment,
-    lrComment: output.lrComment,
-    graComment: output.graComment,
-    overallComment: output.overallComment,
-    strengthsSummary: output.strengthsSummary,
-    weaknessesSummary: output.weaknessesSummary,
-    rewrittenEssay: output.rewrittenEssay ?? null,
-    inputTokens: result.inputTokens,
-    outputTokens: result.outputTokens,
-    costUsd: result.costUsd,
-    model: result.model,
-    rawJson: result.rawJson,
+  // All writes in a single atomic transaction — if any step fails, nothing is saved
+  db.transaction((tx) => {
+    tx.insert(gradingResults).values({
+      id: gradingId,
+      essayId,
+      overallBand: output.overallBand,
+      taBand: output.taBand,
+      ccBand: output.ccBand,
+      lrBand: output.lrBand,
+      graBand: output.graBand,
+      taComment: output.taComment,
+      ccComment: output.ccComment,
+      lrComment: output.lrComment,
+      graComment: output.graComment,
+      overallComment: output.overallComment,
+      strengthsSummary: output.strengthsSummary,
+      weaknessesSummary: output.weaknessesSummary,
+      rewrittenEssay: output.rewrittenEssay ?? null,
+      inputTokens: result.inputTokens,
+      outputTokens: result.outputTokens,
+      costUsd: result.costUsd,
+      model: result.model,
+      rawJson: result.rawJson,
+    }).run();
+
+    if (output.errors.length > 0) {
+      tx.insert(essayErrors).values(
+        output.errors.map((err) => ({
+          id: nanoid(),
+          essayId,
+          gradingResultId: gradingId,
+          category: err.category,
+          tag: err.tag,
+          offsetStart: err.offsetStart,
+          offsetEnd: err.offsetEnd,
+          originalText: err.originalText,
+          suggestion: err.suggestion,
+          explanation: err.explanation,
+          severity: err.severity,
+        }))
+      ).run();
+    }
+
+    if (output.rewrites.length > 0) {
+      tx.insert(essayRewrites).values(
+        output.rewrites.map((rw) => ({
+          id: nanoid(),
+          essayId,
+          gradingResultId: gradingId,
+          paragraph: rw.paragraph,
+          originalText: rw.originalText,
+          rewrittenText: rw.rewrittenText,
+          explanation: rw.explanation,
+        }))
+      ).run();
+    }
+
+    if (output.recommendedQuestions.length > 0) {
+      tx.insert(recommendedQuestions).values(
+        output.recommendedQuestions.map((rq, i) => ({
+          id: nanoid(),
+          essayId,
+          questionId: rq.questionId,
+          reason: rq.reason,
+          rank: i + 1,
+        }))
+      ).run();
+    }
+
+    if (output.translationDrills.length > 0) {
+      tx.insert(translationDrills).values(
+        output.translationDrills.map((drill) => ({
+          id: nanoid(),
+          essayId,
+          chineseSentence: drill.chineseSentence,
+          targetEnglish: drill.targetEnglish,
+          grammarFocus: drill.grammarFocus,
+        }))
+      ).run();
+    }
+
+    tx.update(essays)
+      .set({ state: "graded", gradedAt: new Date() })
+      .where(eq(essays.id, essayId))
+      .run();
   });
-
-  // Insert errors (batch)
-  if (output.errors.length > 0) {
-    await db.insert(essayErrors).values(
-      output.errors.map((err) => ({
-        id: nanoid(),
-        essayId,
-        gradingResultId: gradingId,
-        category: err.category,
-        tag: err.tag,
-        offsetStart: err.offsetStart,
-        offsetEnd: err.offsetEnd,
-        originalText: err.originalText,
-        suggestion: err.suggestion,
-        explanation: err.explanation,
-        severity: err.severity,
-      }))
-    );
-  }
-
-  // Insert rewrites (batch)
-  if (output.rewrites.length > 0) {
-    await db.insert(essayRewrites).values(
-      output.rewrites.map((rw) => ({
-        id: nanoid(),
-        essayId,
-        gradingResultId: gradingId,
-        paragraph: rw.paragraph,
-        originalText: rw.originalText,
-        rewrittenText: rw.rewrittenText,
-        explanation: rw.explanation,
-      }))
-    );
-  }
-
-  // Insert recommended questions (batch)
-  if (output.recommendedQuestions.length > 0) {
-    await db.insert(recommendedQuestions).values(
-      output.recommendedQuestions.map((rq, i) => ({
-        id: nanoid(),
-        essayId,
-        questionId: rq.questionId,
-        reason: rq.reason,
-        rank: i + 1,
-      }))
-    );
-  }
-
-  // Insert translation drills (batch)
-  if (output.translationDrills.length > 0) {
-    await db.insert(translationDrills).values(
-      output.translationDrills.map((drill) => ({
-        id: nanoid(),
-        essayId,
-        chineseSentence: drill.chineseSentence,
-        targetEnglish: drill.targetEnglish,
-        grammarFocus: drill.grammarFocus,
-      }))
-    );
-  }
-
-  // Mark essay as graded
-  await db
-    .update(essays)
-    .set({ state: "graded", gradedAt: new Date() })
-    .where(eq(essays.id, essayId));
 
   return gradingId;
 }
