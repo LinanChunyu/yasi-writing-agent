@@ -26,8 +26,8 @@ export async function submitEssayService(essayId: string): Promise<{ gradingResu
   if (!essay.body.trim()) {
     throw new Error("Essay body is empty");
   }
-  if (essay.wordCount < 50) {
-    throw new Error("Essay too short (min 50 words)");
+  if (essay.wordCount < 150) {
+    throw new Error("Essay too short (min 150 words)");
   }
   if (essay.wordCount > 600) {
     throw new Error("Essay too long (max 600 words). Please shorten before submitting.");

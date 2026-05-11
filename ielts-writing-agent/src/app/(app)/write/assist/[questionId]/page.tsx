@@ -84,7 +84,7 @@ export default function WriteAssistPage({ params }: PageProps) {
           <Button
             size="sm"
             onClick={handleSubmit}
-            disabled={submitting || !essayId || wordCount < 10 || wordCount > WORD_LIMIT}
+            disabled={submitting || !essayId || wordCount < 150 || wordCount > WORD_LIMIT}
           >
             <Send className="h-3 w-3 mr-1.5" />
             {submitting ? "批改中..." : "提交批改"}

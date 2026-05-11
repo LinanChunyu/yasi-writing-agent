@@ -125,7 +125,7 @@ export default function WritePage({ params }: PageProps) {
             <TimerIcon className="h-3 w-3 mr-1.5" />
             {timerRunning ? "暂停计时" : "开始计时"}
           </Button>
-          <Button size="sm" onClick={handleSubmit} disabled={submitting || wordCount < 10}>
+          <Button size="sm" onClick={handleSubmit} disabled={submitting || wordCount < 150}>
             <Send className="h-3 w-3 mr-1.5" />
             {submitting ? "批改中..." : "提交批改"}
           </Button>
