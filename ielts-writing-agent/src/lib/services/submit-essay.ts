@@ -1,5 +1,5 @@
 import { db } from "@/db/client";
-import { essays } from "@/db/schema";
+import { essays, gradingResults } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { runGradingAgent } from "../agents/grading-agent";
 import { submitEssay, saveGradingResult } from "../repositories/essays";
@@ -20,20 +20,35 @@ export async function submitEssayService(essayId: string): Promise<{ gradingResu
   if (!essayRows.length) throw new Error(`Essay not found: ${essayId}`);
   const essay = essayRows[0];
 
-  if (essay.state !== "draft") {
-    throw new Error(`Essay is not in draft state: ${essay.state}`);
+  if (essay.state === "graded") {
+    throw new Error("Essay is already graded");
   }
   if (!essay.body.trim()) {
     throw new Error("Essay body is empty");
+  }
+  if (essay.wordCount < 50) {
+    throw new Error("Essay too short (min 50 words)");
+  }
+  if (essay.wordCount > 600) {
+    throw new Error("Essay too long (max 600 words). Please shorten before submitting.");
+  }
+
+  // If submitted but no grading result (previous grading save failed), allow re-grading
+  if (essay.state === "submitted") {
+    const existing = await db.select().from(gradingResults).where(eq(gradingResults.essayId, essayId)).limit(1);
+    if (existing.length > 0) throw new Error("Essay grading is already in progress or completed");
+    logger.warn({ essayId }, "Essay in submitted state with no grading result — re-running grading");
   }
 
   // Load question
   const question = essay.questionId ? await getQuestionById(essay.questionId) : null;
   const questionPrompt = question?.prompt ?? "(No specific question provided)";
 
-  // Mark as submitted
-  await submitEssay(essayId);
-  await appendEvent("essay_submitted", essayId, "essay", { wordCount: essay.wordCount });
+  // Mark as submitted (skip if already submitted)
+  if (essay.state === "draft") {
+    await submitEssay(essayId);
+    await appendEvent("essay_submitted", essayId, "essay", { wordCount: essay.wordCount });
+  }
 
   logger.info({ essayId, wordCount: essay.wordCount }, "Essay submitted, running grading agent");
 

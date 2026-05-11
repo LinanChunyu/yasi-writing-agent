@@ -5,7 +5,7 @@ import { useEssayStore } from "@/stores/essay-store";
 import { useEssayInit } from "@/hooks/use-essay-init";
 import { useAutoSave } from "@/hooks/use-auto-save";
 import { useStageDetector } from "@/hooks/use-stage-detector";
-import { EssayEditor } from "@/components/essay/EssayEditor";
+import { EssayEditor, WORD_LIMIT } from "@/components/essay/EssayEditor";
 import { CoachChat } from "@/components/coach/CoachChat";
 import { StageIndicator } from "@/components/stage-indicator";
 import { QuestionCard } from "@/components/question-card";
@@ -84,7 +84,7 @@ export default function WriteAssistPage({ params }: PageProps) {
           <Button
             size="sm"
             onClick={handleSubmit}
-            disabled={submitting || !essayId || wordCount < 10}
+            disabled={submitting || !essayId || wordCount < 10 || wordCount > WORD_LIMIT}
           >
             <Send className="h-3 w-3 mr-1.5" />
             {submitting ? "批改中..." : "提交批改"}

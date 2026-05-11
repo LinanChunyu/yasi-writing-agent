@@ -14,22 +14,31 @@ export async function GET() {
     nodeEnv: process.env.NODE_ENV,
   };
 
-  // Test API connectivity with a minimal request (no actual tokens wasted)
+  // Test with a real minimal messages call (1 output token)
   try {
     const client = new Anthropic({
       apiKey,
       ...(baseURL ? { baseURL } : {}),
     });
-    // Use models.list() to verify auth — much cheaper than a message
-    await client.models.list();
+
+    const msg = await client.messages.create({
+      model: process.env.COACH_MODEL ?? "deepseek-v4-flash",
+      max_tokens: 64,
+      messages: [{ role: "user", content: "Reply with just the number 1." }],
+    });
+
+    const textBlock = msg.content.find((b) => b.type === "text");
+    const text = textBlock?.type === "text" ? textBlock.text : "(no text block)";
     checks.apiConnectivity = "ok";
+    checks.apiTestReply = text.trim();
+    checks.apiInputTokens = msg.usage.input_tokens;
+    checks.apiOutputTokens = msg.usage.output_tokens;
   } catch (err: unknown) {
     checks.apiConnectivity = "error";
-    checks.apiError =
-      err instanceof Error ? err.message : String(err);
+    checks.apiError = err instanceof Error ? err.message : String(err);
   }
 
-  // Test DB
+  // DB check
   try {
     const { db } = await import("@/db/client");
     const { questions } = await import("@/db/schema");

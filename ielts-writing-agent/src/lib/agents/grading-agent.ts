@@ -4,6 +4,7 @@ import { withRetry } from "../utils/retry";
 import { calcCostUsd } from "../utils/cost";
 import { logger } from "../utils/logger";
 import { GRADING_SYSTEM_PROMPT } from "./prompts/grading-system";
+import { buildGradingUserMessage } from "./prompts/grading-user-message";
 import { GradingOutputSchema, type GradingInput, type GradingOutput } from "./types/grading";
 
 const client = new Anthropic({
@@ -58,33 +59,40 @@ export async function runGradingAgent(input: GradingInput): Promise<GradingResul
   const keyPrefix = process.env.ANTHROPIC_API_KEY?.slice(0, 10) ?? "(missing)";
   console.log(`[grading] model=${model} baseURL=${baseURL} keyPrefix=${keyPrefix}`);
 
-  const userMessage = `## IELTS Task 2 Question
-${input.questionPrompt}
-
-## Candidate Essay (${input.wordCount} words)
-${input.essayBody}
-
-## Available Question IDs for Recommendations
-${input.availableQuestionIds?.join(", ") ?? "none"}
-
-${input.rubricContext ? `## Rubric Reference\n${input.rubricContext}` : ""}
-
-Grade this essay now. Output ONLY valid JSON.`;
+  const userMessage = buildGradingUserMessage(input);
+  const estTokens = Math.ceil((GRADING_SYSTEM_PROMPT.length + userMessage.length) / 3);
+  console.log(`[grading] est input tokens: ${estTokens} essay words: ${input.wordCount}`);
 
   const rawJson = await withRetry(
     async () => {
-      const response = await client.messages.create({
+      // Use streaming to avoid body timeout on slow reasoning models
+      const stream = client.messages.stream({
         model,
-        max_tokens: 4096,
+        max_tokens: 16000,
         system: GRADING_SYSTEM_PROMPT,
         messages: [{ role: "user", content: userMessage }],
       });
 
-      const content = response.content[0];
-      if (content.type !== "text") throw new Error("Unexpected response type");
+      let textAccum = "";
+      let inputTokens = 0;
+      let outputTokens = 0;
+
+      for await (const event of stream) {
+        if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+          textAccum += event.delta.text;
+        }
+        if (event.type === "message_start" && event.message.usage) {
+          inputTokens = event.message.usage.input_tokens;
+        }
+        if (event.type === "message_delta" && event.usage) {
+          outputTokens = event.usage.output_tokens;
+        }
+      }
+
+      if (!textAccum) throw new Error("No text content in streamed response");
 
       // Parse JSON — strip any accidental markdown fences
-      const text = content.text.replace(/^```json\s*/i, "").replace(/\s*```$/i, "").trim();
+      const text = textAccum.replace(/^```json\s*/i, "").replace(/\s*```$/i, "").trim();
 
       const parsed = JSON.parse(text);
       const validated = GradingOutputSchema.parse(parsed);
@@ -93,8 +101,8 @@ Grade this essay now. Output ONLY valid JSON.`;
 
       return {
         output: repaired,
-        inputTokens: response.usage.input_tokens,
-        outputTokens: response.usage.output_tokens,
+        inputTokens,
+        outputTokens,
         rawJson: text,
       };
     },

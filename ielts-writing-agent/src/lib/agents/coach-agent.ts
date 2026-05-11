@@ -3,7 +3,7 @@ import { env } from "../utils/env";
 import { logger } from "../utils/logger";
 import { calcCostUsd } from "../utils/cost";
 import { COACH_SYSTEM_PROMPT } from "./prompts/coach-system";
-import { getStageOverlay } from "./prompts/coach-stage-overlays";
+import { buildCoachUserMessage } from "./prompts/coach-user-message";
 import type { CoachStreamInput } from "./types/coach";
 
 const client = new Anthropic({
@@ -22,17 +22,10 @@ export async function streamCoachResponse(input: CoachStreamInput): Promise<Coac
   const keyPrefix = process.env.ANTHROPIC_API_KEY?.slice(0, 10) ?? "(missing)";
   console.log(`[coach] model=${model} baseURL=${baseURL} keyPrefix=${keyPrefix} threadId=${input.threadId}`);
 
-  const stageOverlay = getStageOverlay(input.stage);
-
   const systemPrompt = COACH_SYSTEM_PROMPT;
-
-  const contextMessage = `[ESSAY CONTEXT]
-Question: ${input.questionPrompt}
-
-Current Essay Draft (${input.essayBody.split(/\s+/).filter(Boolean).length} words):
-${input.essayBody || "(empty)"}
-
-${stageOverlay}`;
+  const coachUserMsg = buildCoachUserMessage(input);
+  const estTokens = Math.ceil((systemPrompt.length + coachUserMsg.length) / 3);
+  console.log(`[coach] est input tokens: ${estTokens} stage: ${input.stage} history len: ${input.history.length}`);
 
   const messages: Anthropic.MessageParam[] = [
     ...input.history.map((m) => ({
@@ -41,7 +34,7 @@ ${stageOverlay}`;
     })),
     {
       role: "user",
-      content: `${contextMessage}\n\n---\n\nStudent message: ${input.userMessage}`,
+      content: coachUserMsg,
     },
   ];
 
@@ -52,7 +45,7 @@ ${stageOverlay}`;
 
   const anthropicStream = await client.messages.stream({
     model,
-    max_tokens: 800,
+    max_tokens: 16000,
     system: systemPrompt,
     messages,
   });

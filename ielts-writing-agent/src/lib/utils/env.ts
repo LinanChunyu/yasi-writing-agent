@@ -3,7 +3,7 @@ import { z } from "zod";
 const envSchema = z.object({
   ANTHROPIC_API_KEY: z.string().min(1),
   ANTHROPIC_BASE_URL: z.string().optional(),
-  GRADING_MODEL: z.string().default("deepseek-v4-pro"),
+  GRADING_MODEL: z.string().default("deepseek-v4-flash"),
   COACH_MODEL: z.string().default("deepseek-v4-flash"),
   DISTILL_MODEL: z.string().default("deepseek-v4-flash"),
   JUDGE_MODEL: z.string().default("deepseek-v4-pro"),

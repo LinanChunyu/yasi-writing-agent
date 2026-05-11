@@ -39,3 +39,31 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SQLite database files (contains user data, NEVER commit)
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+data/*.db*
+
+# Logs
+*.log
+data/logs/
+
+# Scraped data
+data/raw-scraped/
+
+# SQLite database files (contains user data, NEVER commit)
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+data/*.db*
+
+# Logs
+*.log
+data/logs/
+
+# Scraped data
+data/raw-scraped/

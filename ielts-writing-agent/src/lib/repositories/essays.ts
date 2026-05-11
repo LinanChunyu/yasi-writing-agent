@@ -50,34 +50,34 @@ export async function saveGradingResult(
   const gradingId = nanoid();
   const output = result.output;
 
-  await db.transaction(async (tx) => {
-    // Save grading result
-    await tx.insert(gradingResults).values({
-      id: gradingId,
-      essayId,
-      overallBand: output.overallBand,
-      taBand: output.taBand,
-      ccBand: output.ccBand,
-      lrBand: output.lrBand,
-      graBand: output.graBand,
-      taComment: output.taComment,
-      ccComment: output.ccComment,
-      lrComment: output.lrComment,
-      graComment: output.graComment,
-      overallComment: output.overallComment,
-      strengthsSummary: output.strengthsSummary,
-      weaknessesSummary: output.weaknessesSummary,
-      rewrittenEssay: output.rewrittenEssay ?? null,
-      inputTokens: result.inputTokens,
-      outputTokens: result.outputTokens,
-      costUsd: result.costUsd,
-      model: result.model,
-      rawJson: result.rawJson,
-    });
+  // Insert grading result
+  await db.insert(gradingResults).values({
+    id: gradingId,
+    essayId,
+    overallBand: output.overallBand,
+    taBand: output.taBand,
+    ccBand: output.ccBand,
+    lrBand: output.lrBand,
+    graBand: output.graBand,
+    taComment: output.taComment,
+    ccComment: output.ccComment,
+    lrComment: output.lrComment,
+    graComment: output.graComment,
+    overallComment: output.overallComment,
+    strengthsSummary: output.strengthsSummary,
+    weaknessesSummary: output.weaknessesSummary,
+    rewrittenEssay: output.rewrittenEssay ?? null,
+    inputTokens: result.inputTokens,
+    outputTokens: result.outputTokens,
+    costUsd: result.costUsd,
+    model: result.model,
+    rawJson: result.rawJson,
+  });
 
-    // Save errors
-    for (const err of output.errors) {
-      await tx.insert(essayErrors).values({
+  // Insert errors (batch)
+  if (output.errors.length > 0) {
+    await db.insert(essayErrors).values(
+      output.errors.map((err) => ({
         id: nanoid(),
         essayId,
         gradingResultId: gradingId,
@@ -89,12 +89,14 @@ export async function saveGradingResult(
         suggestion: err.suggestion,
         explanation: err.explanation,
         severity: err.severity,
-      });
-    }
+      }))
+    );
+  }
 
-    // Save rewrites
-    for (const rw of output.rewrites) {
-      await tx.insert(essayRewrites).values({
+  // Insert rewrites (batch)
+  if (output.rewrites.length > 0) {
+    await db.insert(essayRewrites).values(
+      output.rewrites.map((rw) => ({
         id: nanoid(),
         essayId,
         gradingResultId: gradingId,
@@ -102,38 +104,41 @@ export async function saveGradingResult(
         originalText: rw.originalText,
         rewrittenText: rw.rewrittenText,
         explanation: rw.explanation,
-      });
-    }
+      }))
+    );
+  }
 
-    // Save recommended questions
-    for (let i = 0; i < output.recommendedQuestions.length; i++) {
-      const rq = output.recommendedQuestions[i];
-      await tx.insert(recommendedQuestions).values({
+  // Insert recommended questions (batch)
+  if (output.recommendedQuestions.length > 0) {
+    await db.insert(recommendedQuestions).values(
+      output.recommendedQuestions.map((rq, i) => ({
         id: nanoid(),
         essayId,
         questionId: rq.questionId,
         reason: rq.reason,
         rank: i + 1,
-      });
-    }
+      }))
+    );
+  }
 
-    // Save translation drills
-    for (const drill of output.translationDrills) {
-      await tx.insert(translationDrills).values({
+  // Insert translation drills (batch)
+  if (output.translationDrills.length > 0) {
+    await db.insert(translationDrills).values(
+      output.translationDrills.map((drill) => ({
         id: nanoid(),
         essayId,
         chineseSentence: drill.chineseSentence,
         targetEnglish: drill.targetEnglish,
         grammarFocus: drill.grammarFocus,
-      });
-    }
+      }))
+    );
+  }
 
-    // Update essay state
-    await tx
-      .update(essays)
-      .set({ state: "graded", gradedAt: new Date() })
-      .where(eq(essays.id, essayId));
-  });
+  // Mark essay as graded
+  await db
+    .update(essays)
+    .set({ state: "graded", gradedAt: new Date() })
+    .where(eq(essays.id, essayId));
 
   return gradingId;
 }

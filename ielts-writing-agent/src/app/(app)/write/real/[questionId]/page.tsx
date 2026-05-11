@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEssayStore } from "@/stores/essay-store";
 import { useEssayInit } from "@/hooks/use-essay-init";
 import { useAutoSave } from "@/hooks/use-auto-save";
-import { EssayEditor } from "@/components/essay/EssayEditor";
+import { EssayEditor, WORD_LIMIT } from "@/components/essay/EssayEditor";
 import { QuestionCard } from "@/components/question-card";
 import { Timer } from "@/components/essay/Timer";
 import { Button } from "@/components/ui/button";
@@ -84,7 +84,7 @@ export default function WriteRealPage({ params }: PageProps) {
           <Button
             size="sm"
             onClick={handleSubmit}
-            disabled={submitting || !essayId || wordCount < 10}
+            disabled={submitting || !essayId || wordCount < 10 || wordCount > WORD_LIMIT}
           >
             <Send className="h-3 w-3 mr-1.5" />
             {submitting ? "批改中..." : "提交批改"}
